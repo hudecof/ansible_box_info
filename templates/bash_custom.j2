@@ -1,0 +1,52 @@
+# {{ ansible_managed }}
+# read box production status and try to force color prompt
+if [ -f {{ box_info_file_info }} ]; then
+        . {{ box_info_file_info }}
+fi
+
+if [ -n "$force_color_prompt" ]; then
+    if [ -x /usr/bin/tput ] && tput setaf 1 >&/dev/null; then
+        # We have color support; assume it's compliant with Ecma-48
+        # (ISO/IEC-6429). (Lack of such support is extremely rare, and such
+        # a case would tend to support setf rather than setaf.)
+        color_prompt=yes
+    else
+        color_prompt=
+    fi
+fi
+
+if [ "$color_prompt" = yes ]; then
+    bldgrn='\[\e[1;32m\]'
+    bldblu='\[\e[1;34m\]'
+    bldwht='\[\e[1;37m\]'
+    bldylw='\[\e[1;33m\]'
+    bldred='\[\e[1;31m\]'
+    txtrst='\[\e[0m\]'
+
+    if [ -z $box_type ]; then
+        box_type=$(hostname | cut -d \. -f 2)
+    fi
+
+    BOX_TYPE="U"
+    BOX_COLOR=$bldwht
+    if [ "$box_type" = prod ]; then
+       BOX_TYPE="P"
+       BOX_COLOR=$bldred
+    elif [ "$box_type" = test ]; then
+        BOX_TYPE="T"
+        BOX_COLOR=$bldylw
+    elif [ "$box_type" = dev ]; then
+        BOX_TYPE="D"
+        BOX_COLOR=$bldgrn
+    fi
+
+    PROMPT_COLOR=$bldgrn
+    [ ${EUID} == 0 ] && PROMPT_COLOR=$bldred
+    PS1="${BOX_COLOR}[$BOX_TYPE]$txtrst ${debian_chroot:+($debian_chroot)}${PROMPT_COLOR}\u@\H:${bldblu} \w \\$ ${txtrst}"
+else
+    PS1='[$BOX_TYPE] ${debian_chroot:+($debian_chroot)}\u@\H:\w\$ '
+fi
+
+unset BOX_TYPE BOX_COLOR
+unset force_color_prompt color_prompt
+

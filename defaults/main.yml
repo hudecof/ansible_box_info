@@ -1,0 +1,9 @@
+---
+# defaults file for box_info
+
+# could by /prod, dev, test/
+# default is unknown
+box_info_type: unkown
+
+box_info_file_info: /etc/box_info
+box_info_dir_skel: /etc/skel
