@@ -15,6 +15,14 @@ if [ -n "$force_color_prompt" ]; then
     fi
 fi
 
+BOX_COLOR="BOX_COLOR_${box_type}"
+eval BOX_COLOR=\$$BOX_COLOR
+[ -z $BOX_COLOR ] && BOX_COLOR=$BOX_COLOR_default
+
+BOX_LETTER="BOX_LETTER_${box_type}"
+eval BOX_LETTER=\$$BOX_LETTER
+[ -z $BOX_LETTER ] && BOX_LETTER=$BOX_LETTER_default
+
 if [ "$color_prompt" = yes ]; then
     bldgrn='\[\e[1;32m\]'
     bldblu='\[\e[1;34m\]'
@@ -23,30 +31,14 @@ if [ "$color_prompt" = yes ]; then
     bldred='\[\e[1;31m\]'
     txtrst='\[\e[0m\]'
 
-    if [ -z $box_type ]; then
-        box_type=$(hostname | cut -d \. -f 2)
-    fi
-
-    BOX_TYPE="U"
-    BOX_COLOR=$bldwht
-    if [ "$box_type" = prod ]; then
-       BOX_TYPE="P"
-       BOX_COLOR=$bldred
-    elif [ "$box_type" = test ]; then
-        BOX_TYPE="T"
-        BOX_COLOR=$bldylw
-    elif [ "$box_type" = dev ]; then
-        BOX_TYPE="D"
-        BOX_COLOR=$bldgrn
-    fi
-
     PROMPT_COLOR=$bldgrn
     [ ${EUID} == 0 ] && PROMPT_COLOR=$bldred
-    PS1="${BOX_COLOR}[$BOX_TYPE]$txtrst ${debian_chroot:+($debian_chroot)}${PROMPT_COLOR}\u@\H:${bldblu} \w \\$ ${txtrst}"
+
+    PS1="${BOX_COLOR}[$BOX_LETTER]$txtrst ${debian_chroot:+($debian_chroot)}${PROMPT_COLOR}\u@\H:${bldblu} \w \\$ ${txtrst}"
 else
     PS1='[$BOX_TYPE] ${debian_chroot:+($debian_chroot)}\u@\H:\w\$ '
 fi
 
-unset BOX_TYPE BOX_COLOR
+unset BOX_LETTER BOX_COLOR
 unset force_color_prompt color_prompt
 

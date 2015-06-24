@@ -3,3 +3,19 @@
 # allowed values: prod | dev | test
 box_type={{ box_info_type }}
 force_color_prompt=yes
+
+# default, if not set WHITE/U 
+BOX_COLOR_default='\[\e[1;37m\]'
+BOX_LETTER_default='U'
+
+# production, RED/P
+BOX_COLOR_prod='\[\e[1;31m\]'
+BOX_LETTER_prod='P'
+
+# testing, YELLOW/T
+BOX_COLOR_test='\[\e[1;33m\]'
+BOX_LETTER_test='T'
+
+# development, GREEN/D
+BOX_COLOR_dev='\[\e[1;32m\]'
+BOX_LETTER_dev='D'
