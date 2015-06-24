@@ -7,11 +7,17 @@
     - box_info
  
 - name: "custom bash include file"
-  action: template src=bash_custom.j2 dest={{ box_info_dir_skel }}/.bash_custom owner=root group=root mode=0644
+  action: template src=bash_custom.j2 dest={{ item }}/.bash_custom owner=root group=root mode=0644
+  with_items:
+    - "{{ box_info_dir_skel }}/"
+    - /root
   tags: 
     - box_info
  
-- name: "update /etc/skel/.bashrc file"
-  action: lineinfile insertafter=EOF dest=/etc/skel/.bashrc regexp='.bash_custom' line='[ -f ~/.bash_custom ] && . ~/.bash_custom'
+- name: "update .bashrc file"
+  action: lineinfile insertafter=EOF dest={{ item }} regexp='.bash_custom' line='[ -f ~/.bash_custom ] && . ~/.bash_custom'
+  with_items:
+    - /etc/skel/.bashrc
+    - /root/.bashrc
   tags: 
     - box_info
