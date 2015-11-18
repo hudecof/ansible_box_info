@@ -1,0 +1,3 @@
+{
+    "type": {{ box_info_type|to_nice_json}}
+}
