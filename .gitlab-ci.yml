@@ -11,5 +11,5 @@ before_script:
 test:
   script:
     - cd ../ && rm -rf hudecof.box-info &&  mv box-info hudecof.box-info && cd hudecof.box-info
-    - molecule test
+    - molecule test --debug
     - cd ../ && mv  hudecof.box-info box-info && cd box-info
