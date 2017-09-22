@@ -2,22 +2,21 @@
 # tasks file for box_info
 
 - name: "os prodiction type identification"
-  action: template src=box_info.j2 dest={{ box_info_file_info }} owner=root group=root mode=0644
+  template:
+    src: box_info.j2
+    dest: "{{ box_info_file_info }}"
+    owner: root
+    group: root
+    mode: 0644
   tags: 
     - box_info
  
-- name: "custom bash include file"
-  action: template src=bash_custom.j2 dest={{ item }}/.bash_custom owner=root group=root mode=0644
-  with_items:
-    - "{{ box_info_dir_skel }}/"
-    - /root
-  tags: 
-    - box_info
- 
-- name: "update .bashrc file"
-  action: lineinfile insertafter=EOF dest={{ item }} regexp='.bash_custom' line='[ -f ~/.bash_custom ] && . ~/.bash_custom'
-  with_items:
-    - /etc/skel/.bashrc
-    - /root/.bashrc
+- name: "add to profile directory"
+  template:
+    src: bash_custom.j2
+    dest: /etc/profile.d/box_info.sh
+    owner: root
+    group: root
+    mode: 0644
   tags: 
     - box_info

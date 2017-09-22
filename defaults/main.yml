@@ -1,7 +1,7 @@
 ---
 # defaults file for box_info
 
-# could by /prod, dev, test/
+# could by /prod, dev, test, qa/
 # default is unknown
 box_info_type: unkown
 
