@@ -8,9 +8,9 @@
     owner: root
     group: root
     mode: 0644
-  tags: 
+  tags:
     - box_info
- 
+
 - name: "add to profile directory"
   template:
     src: bash_custom.j2
@@ -18,5 +18,5 @@
     owner: root
     group: root
     mode: 0644
-  tags: 
+  tags:
     - box_info
