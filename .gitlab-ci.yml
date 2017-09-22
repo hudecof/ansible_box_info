@@ -6,10 +6,11 @@ before_script:
  - pip install ansible
  - pip install docker-py
  - pip install molecule
- - pip install -U ansible-lint
 
 test:
   script:
+    - pwd && ls -la
     - cd ../ && rm -rf hudecof.box-info &&  mv box-info hudecof.box-info && cd hudecof.box-info
+    - pwd && ls -la
     - molecule --debug test
     - cd ../ && mv  hudecof.box-info box-info && cd box-info
