@@ -1,5 +1,6 @@
 ---
 galaxy_info:
+  role_name: box-info
   author: Peter Hudec
   description: server production identification
   company: Peter Hudec
@@ -26,7 +27,7 @@ galaxy_info:
     versions:
     - all
 
-  categories:
-  - system
+  galaxy_tags:
+    - system
 
 dependencies: []
