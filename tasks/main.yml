@@ -1,7 +1,7 @@
 ---
 # tasks file for box_info
 
-- name: "os prodiction type identification"
+- name: "os production type identification"
   template:
     src: box_info.j2
     dest: "{{ box_info_file_info }}"
