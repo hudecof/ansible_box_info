@@ -1,15 +1,14 @@
-box_info
-========
+# box_info
 
-This roles enable the server production state indentifiaction on the command prompt.
+This roles enable the server production state identification on the command prompt.
 
-Requirements
-------------
+## Requirements
+
 This role requires Ansible 1.4 or higher, and platform requirements are listed
 in the metadata file. It should work also with lower version, but I have never tested it.
 
-Role Variables
---------------
+## Role Variables
+
 Please readme the descriptions in the
 
     defautls/main.yml
@@ -18,27 +17,25 @@ The most important variable is `box_info_type`. This variable adds the colored s
 
 Possible values are
 
-- `prod`: prefix is RED `P`
-- `test`: prefix is YELLOW `T`
-- `dev`: prefix is GREEN `D`
-- `unknown`: prefix is WHITE `U`, this is default
+- `prod`: prefix is RED `PROD`
+- `test`: prefix is YELLOW `TEST`
+- `dev`: prefix is GREEN `DEV`
+- `qa`: prefix is GREEN `QA`
+- `unknown`: prefix is WHITE `UNDEF`, this is default
 
 There is also user `ROLE` identification
 
 - `root`: red prompt
 - `others`: green prompt
 
-Dependencies
-------------
+## Dependencies
 
 None 
 
-License
--------
+## License
 
 BSD
 
-Author Information
-------------------
+## Author Information
 
 Peter Hudec
