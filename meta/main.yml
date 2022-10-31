@@ -1,33 +1,30 @@
----
 galaxy_info:
-  role_name: box-info
+  role_name: box_info
+  namespace: hudecof
   author: Peter Hudec
+  company: 5ok s.r.o.
   description: server production identification
-  company: Peter Hudec
   license: BSD
-  min_ansible_version: 1.4
-
+  min_ansible_version: 2.1
   platforms:
-  - name: EL
-    versions:
-    - all
-  - name: Fedora
-    versions:
-    - all
-  - name: opensuse
-    versions:
-    - all
-  - name: Ubuntu
-    versions:
-    - all
-  - name: SLES
-    versions:
-    - all
-  - name: Debian
-    versions:
-    - all
-
+    - name: EL
+      versions:
+        - all
+    - name: Fedora
+      versions:
+        - all
+    - name: opensuse
+      versions:
+        - all
+    - name: Ubuntu
+      versions:
+        - all
+    - name: SLES
+      versions:
+        - all
+    - name: Debian
+      versions:
+        - all
   galaxy_tags:
     - system
-
 dependencies: []
