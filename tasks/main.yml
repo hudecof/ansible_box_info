@@ -1,22 +1,22 @@
 ---
 # tasks file for box_info
 
-- name: "os production type identification"
-  template:
-    src: box_info.j2
-    dest: "{{ box_info_file_info }}"
-    owner: root
-    group: root
-    mode: 0644
+- name: "OS production type identification"
+  ansible.builtin.template:
+      src: box_info.j2
+      dest: "{{ box_info_file_info }}"
+      owner: root
+      group: root
+      mode: 0644
   tags:
-    - box_info
+      - box_info
 
-- name: "add to profile directory"
-  template:
-    src: bash_custom.j2
-    dest: /etc/profile.d/box_info.sh
-    owner: root
-    group: root
-    mode: 0644
+- name: "Add to profile directory"
+  ansible.builtin.template:
+      src: bash_custom.j2
+      dest: /etc/profile.d/box_info.sh
+      owner: root
+      group: root
+      mode: 0644
   tags:
-    - box_info
+      - box_info

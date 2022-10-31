@@ -4,8 +4,8 @@ This roles enable the server production state identification on the command prom
 
 ## Requirements
 
-This role requires Ansible 1.4 or higher, and platform requirements are listed
-in the metadata file. It should work also with lower version, but I have never tested it.
+This role requires Ansible 2.1 or higher, and platform requirements are listed
+in the meta data file. It should work also with lower version, but I have never tested it.
 
 ## Role Variables
 

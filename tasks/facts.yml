@@ -1,16 +1,17 @@
 ---
 
-- name: create facts.d directory
-  file:
+- name: "Create facts.d directory"
+  ansible.builtin.file:
     path: /etc/ansible/facts.d
     state: directory
     owner: root
     group: root
+    mode: 0644
   tags:
     - box_info
 
-- name: create facts file
-  template:
+- name: "Create facts file"
+  ansible.builtin.template:
     src: facts.yml.j2
     dest: /etc/ansible/facts.d/box_info.fact
     mode: 0644
